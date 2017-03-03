@@ -3,10 +3,10 @@
  */
 module.exports = {
     mysql: {
-        host     : '192.168.12.51',
-        user     : 'remote',
-        password : 'kmlckj',
-        port: '3307',
-        database: 'roadnettraffic'
+        host     : 'bdm268988566.my3w.com',
+        user     : 'bdm268988566',
+        password : '1988911npc',
+        port: '3306',
+        database: 'bdm268988566_db'
     }
 }

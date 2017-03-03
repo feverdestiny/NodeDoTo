@@ -8,8 +8,8 @@ $(function () {
 
 
     $("#btnLog").click(function () {
-        $("#btnLog").addClass("animated zoomOut")
-        $('#btnLog').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', logIn());
+        $("#divlog").addClass("animated zoomOut")
+        $('#divlog').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', logIn());
     });
     function logIn() {
         setTimeout(function () {
@@ -31,9 +31,10 @@ $(function () {
             console.log('go to login')
             $.ajax({
                 type: 'POST',
-                url: '/destiny',
+                url: '/userinfo',
                 datatype:'json',
-                data: {'username':MyInputValue},
+                data: {'name':userName,
+                'password':userPassword},
                 success: function(data) {
                     console.log(data);
                 },
@@ -57,5 +58,49 @@ $(function () {
     });
 
 
+    //注册
+    $('#btnRegister').click(function () {
+        $('#MainLogin').hide();
+        $('#RegetierLogin').show();
+        $('#RegetierLogin') .addClass("animated fadeInUp")
+    });
+    $('#RbtnLog').click(function () {
+        var rname= $.trim($('#Rusername').val());
+        var rpassword1=$.trim($('#Ruserpassword1').val());
+        var rpassword2=$.trim($('#Ruserpassword2').val());
 
+        if(rname!=""&rpassword1!=""&rpassword2!=""){
+            $.ajax({
+                type: 'POST',
+                url: '/RegesterUser',
+                datatype:'json',
+                data: {'name':rname,
+                    'password':rpassword1},
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                }
+            });
+        }else {
+            if(rname==''){
+                alert('账号不能为空');
+                $('#Rusername').focus();
+                return
+            }
+            if(rpassword1==''){
+                alert('密码不能为空');
+                $('#Ruserpassword1').focus();
+                return
+            }
+            if(rpassword2==''){
+                alert('密码不能为空');
+                $('#Ruserpassword2').focus();
+                return
+            }
+        }
+
+
+    });
+    
 });
