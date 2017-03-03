@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts</title>
+    <link href="views/css/bootstrap.css" rel="stylesheet"/>
+    <script src="views/js/jquery.min.js"></script>
+    <script src="views/js/tether.js"></script>
+    <script src="views/js/bootstrap.js"></script>
+    <!--导入ECharts-->
+    <script src="views/js/echarts.js"></script>
+    <style>
+        .normalWH{
+            width: 600px;height: 600px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div id="main" class="normalWH"></div>
+    </div>
+
+    <div class="row">
+        <div id="PieMain" class="normalWH"></div>
+    </div>
+    <div class="row">
+        <div id="Scatter" class="normalWH"></div>
+    </div>
+    <div class="row">
+        <div id="TLianDong" class="normalWH"> </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    //初始化echarts实例1
+    var mycharts=echarts.init(document.getElementById('main'));
+    //图表的配置
+    var option={
+        title:{
+            text:  'EChartsDemo'
+
+        },
+        tooltip:{},
+        legend:{
+            data:['销量']
+        },
+        xAxis:{
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis:{},
+        series:[{
+            name:'销量',
+            type:'bar',
+            data:[5,10,25,30,10,6,34]
+        }]
+    };
+    //初始化图表内容
+    mycharts.setOption(option);
+
+    /******************************************************
+     **********************************************************/
+    var myCharts_two=echarts.init(document.getElementById('PieMain'));
+    myCharts_two.setOption({
+        title:{
+            text:'Pie图'
+        },
+        backgroundColor:'#2c343c',
+        textStyle:{
+            color:'rgba(255, 255, 255, 0.3)'
+        },
+        label: {
+            normal: {
+                textStyle: {
+                    color: 'rgba(255, 255, 255, 0.3)'
+                }
+            }
+        },
+        tooltip:{},
+        visualMap: {
+            // 不显示 visualMap 组件，只用于明暗度的映射
+            show: false,
+            // 映射的最小值为 80
+            min: 80,
+            // 映射的最大值为 600
+            max: 600,
+            inRange: {
+                // 明暗度的范围是 0 到 1
+                colorLightness: [0, 1]
+            }
+        },
+        series:[
+            {
+                name:'Pie图',
+                type:'pie',
+                radius:'80%',
+                roseType:'angle',       //设置南公格尔图
+                itemStyle:{
+
+                    normal: {      //设置默认每个条目的样式
+                        color: '#c23531',// 设置扇形的颜色
+                        shadowBlur: 200,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+                data:[          //数据类型
+                    {value:400,name:'facebook'},
+                    {value:200,name:'网络引擎'},
+                    {value:320,name:'腾讯'},
+                    {value:460,name:'google'},
+                    {value:140,name:'百度'},
+                    {value:60,name:'淘宝'},
+                ]
+            }
+        ]
+    });
+    /******************************************************
+     **********************************************************/
+
+    var myCharts_three=echarts.init(document.getElementById('Scatter'));
+    myCharts_three.setOption({
+        title:{
+            text:'散点图'
+        },
+        xAxis:{
+            type:'value'
+        },
+        yAxis:{
+            type:'value'
+        },
+        dataZoom: [
+            {   // 这个dataZoom组件，默认控制x轴。
+                type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                start: 10,      // 左边在 10% 的位置。
+                end: 60 ,        // 右边在 60% 的位置。
+                xAxisIndex: 0
+            },
+            {   // 这个dataZoom组件，也控制x轴。
+                type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
+                start: 10,      // 左边在 10% 的位置。
+                end: 60,        // 右边在 60% 的位置。
+                xAxisIndex: 0,
+            },
+            {   // 这个dataZoom组件，默认控制y轴。
+                type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                start: 10,      // 左边在 10% 的位置。
+                end: 60 ,        // 右边在 60% 的位置。
+                yAxisIndex: 0
+            },
+            {   // 这个dataZoom组件，也控制y轴。
+                type: 'inside', // 这个 dataZoom 组件是 inside 型 dataZoom 组件
+                start: 10,      // 左边在 10% 的位置。
+                end: 60,        // 右边在 60% 的位置。
+                yAxisIndex: 0,
+            }
+        ],
+        series: [
+            {
+                type: 'scatter', // 这是个『散点图』
+                itemStyle: {
+                    normal: {
+                        opacity: 0.8
+                    }
+                },
+                symbolSize: function (val) {
+                    return val[2] * 40;
+                },
+                data: [["14.616","7.241","0.896"],["3.958","5.701","0.955"],["2.768","8.971","0.669"],["9.051","9.710","0.171"],["14.046","4.182","0.536"],["12.295","1.429","0.962"],["4.417","8.167","0.113"],["0.492","4.771","0.785"],["7.632","2.605","0.645"],["14.242","5.042","0.368"]]
+            }
+        ]
+    });
+
+    myCharts_three.on('click',function (parms) {
+        console.log(parms);
+    })
+    /******************************************************
+     **********************************************************/
+    var TLianDongOption={
+        title:{
+            text:'双数据联动'
+        },
+        tooltip:{
+
+        },
+        legend:{
+        data:['FaceBook','Google']
+        },
+
+    };
+    var myCharts_TLianDong=echarts.init(TLianDongOption);
+</script>
+</body>
+</html>
