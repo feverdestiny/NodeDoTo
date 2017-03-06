@@ -37,6 +37,12 @@ $(function () {
                 'password':userPassword},
                 success: function(data) {
                     console.log(data);
+                    swalAlter('登陆成功', 'success');
+                    var userData = {
+                        islogin: true,
+                        name: userName
+                    }
+                    sessionStorage.setItem('userData', JSON.stringify(userData));
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                 }
@@ -44,12 +50,14 @@ $(function () {
         }else
         {
             if(userName==''){
-                alert('账号不能为空');
+                // alert('账号不能为空');
+                swalAlter('账号不能为空', 'warning');
                 $('#username').focus();
                 return
             }
             if(userPassword==''){
-                alert('密码不能为空');
+                // alert('密码不能为空');
+                swalAlter('密码不能为空', 'warning');
                 $('#userpassword').focus();
                 return
             }
@@ -78,23 +86,27 @@ $(function () {
                     'password':rpassword1},
                 success: function(data) {
                     console.log(data);
+                    swalAlter('注册成功', 'success');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                 }
             });
         }else {
             if(rname==''){
-                alert('账号不能为空');
+                // alert('账号不能为空');
+                swalAlter('账号不能为空', 'warning');
                 $('#Rusername').focus();
                 return
             }
             if(rpassword1==''){
-                alert('密码不能为空');
+                // alert('密码不能为空');
+                swalAlter('密码不能为空', 'warning');
                 $('#Ruserpassword1').focus();
                 return
             }
             if(rpassword2==''){
-                alert('密码不能为空');
+                // alert('密码不能为空');
+                swalAlter('密码不能为空', 'warning');
                 $('#Ruserpassword2').focus();
                 return
             }

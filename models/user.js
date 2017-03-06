@@ -18,7 +18,7 @@ module.exports = User;
 User.savec = function savec(name,password,callback) {
 
 
-    var insertUser_Sql = "INSERT INTO tb_user(id,name,password) VALUES(0,'"+name+"','"+password+"')";
+    var insertUser_Sql = "INSERT INTO tb_user(name,password) VALUES('" + name + "','" + password + "')";
 
     connection.query(insertUser_Sql, function (err,result) {
         if (err) {
