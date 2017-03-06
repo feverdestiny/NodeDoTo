@@ -29,24 +29,9 @@ $(function () {
 
         if(userName!=''&&userPassword!=''){
             console.log('go to login')
-            $.ajax({
-                type: 'POST',
-                url: '/userinfo',
-                datatype:'json',
-                data: {'name':userName,
-                'password':userPassword},
-                success: function(data) {
-                    console.log(data);
-                    swalAlter('登陆成功', 'success');
-                    var userData = {
-                        islogin: true,
-                        name: userName
-                    }
-                    sessionStorage.setItem('userData', JSON.stringify(userData));
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                }
-            });
+
+            isuser(userName, userPassword);
+
         }else
         {
             if(userName==''){
@@ -64,7 +49,29 @@ $(function () {
 
         }
     });
-
+    //判断用户信息
+    function isuser(userName, userPassword) {
+        $.ajax({
+            type: 'POST',
+            url: '/userinfo',
+            datatype: 'json',
+            data: {
+                'name': userName,
+                'password': userPassword
+            },
+            success: function (data) {
+                console.log(data);
+                swalAlter('登陆成功', 'success');
+                var userData = {
+                    islogin: true,
+                    name: userName
+                }
+                sessionStorage.setItem('userData', JSON.stringify(userData));
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    }
 
     //注册
     $('#btnRegister').click(function () {
@@ -78,6 +85,7 @@ $(function () {
         var rpassword2=$.trim($('#Ruserpassword2').val());
 
         if(rname!=""&rpassword1!=""&rpassword2!=""){
+
             $.ajax({
                 type: 'POST',
                 url: '/RegesterUser',
