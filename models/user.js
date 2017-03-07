@@ -14,7 +14,6 @@ module.exports = User;
 
 
 //保存数据
-//保存数据
 User.savec = function savec(name,password,callback) {
     var getUserInfo_SQL = "SELECT * FROM tb_user WHERE name = '" + name + "'";
     connection.query(getUserInfo_SQL, function (err, result) {
@@ -22,7 +21,7 @@ User.savec = function savec(name,password,callback) {
             console.log("GetUserInfo Error: " + err.message);
             return;
         }
-        if (result != "") {
+        if (result == "") {
             var insertUser_Sql = "INSERT INTO tb_user(name,password) VALUES('" + name + "','" + password + "')";
 
             connection.query(insertUser_Sql, function (err, results) {
@@ -34,9 +33,12 @@ User.savec = function savec(name,password,callback) {
                 //connection.release();
 
                 console.log("invoked[save]");
+                results.issuc = true;
                 callback(err, results);
             });
         } else {
+            result.issuc = false;
+            result.error = '账号已存在,请重试'
             callback(err, result);
         }
     });

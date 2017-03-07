@@ -4,9 +4,15 @@
 
 
 
-//alter提示信息
-http://www.jq22.com/demo/sweetalert-master-150108224250/
-//警告
+//
+
+/**
+ * alter提示信息
+ * http://www.jq22.com/demo/sweetalert-master-150108224250/
+ * type:"warning", "error", "success" and "info".
+ *
+ *
+ * **/
     function swalAlter(title, type) {
         swal({
             title: title,

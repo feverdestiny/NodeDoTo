@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var echartsdemo=require('./routes/echartsdemo')
 var wangeditor = require('./routes/wangeditor')
+var weather = require('./routes/weather')
 var app = express();
 
 // view engine setup
@@ -27,6 +28,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/echarts',echartsdemo)
 app.use('/wangeditor', wangeditor);
+app.use('/weather', weather)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

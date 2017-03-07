@@ -61,12 +61,16 @@ $(function () {
             },
             success: function (data) {
                 console.log(data);
-                swalAlter('登陆成功', 'success');
-                var userData = {
-                    islogin: true,
-                    name: userName
+                if (data.issuc) {
+                    swalAlter('登陆成功', 'success');
+                    var userData = {
+                        islogin: true,
+                        name: userName
+                    }
+                    sessionStorage.setItem('userData', JSON.stringify(userData));
+                } else {
+                    swalAlter(data.error, 'warning');
                 }
-                sessionStorage.setItem('userData', JSON.stringify(userData));
             },
             error: function (jqXHR, textStatus, errorThrown) {
             }
@@ -94,7 +98,12 @@ $(function () {
                     'password':rpassword1},
                 success: function(data) {
                     console.log(data);
-                    swalAlter('注册成功', 'success');
+                    if (data.issuc) {
+                        swalAlter('注册成功', 'success');
+                    }
+                    else {
+                        swalAlter(data.error, 'warning');
+                    }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                 }

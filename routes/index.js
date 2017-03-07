@@ -33,13 +33,14 @@ router.post('/RegesterUser', function(req, res) {
   var name=req.body.name;
   var password=req.body.password;
   User.savec(name,password,function (err,result) {
-    if(result == ''){
-      console.log(result);
-      res.locals.issuc=false;
-      res.locals.error = '注册失败，请重试';
+    if (result.issuc) {
+      res.locals.issuc = true;
       res.send( res.locals);
     }else{
    console.log(result);
+      console.log(result);
+      res.locals.issuc = false;
+      res.locals.error = result.error;
       res.send( res.locals);
     }
 

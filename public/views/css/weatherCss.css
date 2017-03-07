@@ -1,0 +1,56 @@
+.Weather {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    float: left;
+    font-family: '微软雅黑';
+    color: #fff;
+    font-size: 12px;
+    z-index: 1;
+}
+
+.Weather .WeatherContentMain {
+    padding: 5px 0px 5px 0px;
+    width: 100%;
+    float: left;
+}
+
+.Weather .WeatherContentMain ul li {
+    float: left;
+    margin-top: 35px;
+    border-right: 1px solid rgba(218, 218, 218, 0.31);
+    width: 87px;
+    text-align: center;
+
+}
+
+.Weather .WeatherContentMain ul li:first-child {
+    width: 130px;
+    margin: 0px;
+    font-size: 16px;
+
+}
+
+.Weather .WeatherContentMain ul li:last-child {
+    border-right: 0px
+}
+
+.Weather .WeatherContentMain ul li div img {
+    display: inline-block;
+}
+
+.Weather .WeatherContentMain ul li .WeatherItem {
+    padding-top: 20px;
+}
+
+.Weather .WeatherContentMain ul li .WeatherItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+    /*cursor: pointer;*/
+}
+
+.Weather .WeatherContentMain ul li .weatherItemDiv {
+    margin-top: 5px;
+}
+
+.Weather .WeatherContentMain ul li .weatherItemDiv-default {
+}
