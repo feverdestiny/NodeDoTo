@@ -9,6 +9,7 @@
     <script src="../views/js/bootstrap.js"></script>
     <link href="../views/css/weatherCss.css" rel="stylesheet">
     <script src="../views/js/weatherView.js"></script>
+    <script src="views/js/echarts.js"></script>
     <style>
         ul {
             list-style: none;
@@ -22,77 +23,120 @@
             width: 100%;
             height: 180px;
             z-index: 100;
-        }    </style>
+        }
+
+        .weather_foot {
+            background: rgba(255, 255, 255, 0.1);
+            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,
+            startColorstr=#10ffffff, endColorstr=#10ffffff);
+            height: 200px;
+            margin-top: 10px;
+        }
+
+        .weather_other ul li {
+            width: 80px;
+            list-style: none;
+            float: left;
+            background: rgba(255, 255, 255, 0.2);
+            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr='#20ffffff', endColorstr='#20ffffff');
+            text-align: center;
+            line-height: 26px;
+            margin-right: 1px;
+            font-size: 12px;
+            cursor: pointer;
+            display: block;
+        }
+
+        .weather_other_active {
+            height: 27px;
+            background: rgba(255, 255, 255, 0.1) !important;
+            /*filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=#10ffffff, endColorstr=#10ffffff);*/
+        }
+    </style>
 </head>
 <body>
 
 <div class="Weather" style="background-image: -webkit-linear-gradient(top, rgb(13, 104, 188), rgb(114, 173, 224));">
     <div class="weather_bg">
-        <div style="padding: 5px 10px;"><p>昆明天气</p></div>
+        <div style="padding: 5px 10px;"><p>昆明:<span id="description"></span></p></div>
         <div class="WeatherContentMain">
             <div style="">
                 <ul id="weatherInfoDiv">
-                    <li>
-                        <div class="WeatherItem" style="padding-top:0px">
-                            <div><img src="../views/images/weather/303.png " width="80"></div>
-                            <div class="weatherItemDiv"> 小到中雨</div>
-                            <div class="weatherItemDiv "> 2017-3-8</div>
-                            <div class="weatherItemDiv"> 星期二</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="WeatherItem" style="padding-top:0px;">
-                            <div><img src="../views/images/weather/305.png " width="60"></div>
-                            <div class="weatherItemDiv"> 小到中雨</div>
-                            <div class="weatherItemDiv "> 2017-3-9</div>
-                            <div class="weatherItemDiv"> 星期三</div>
+                    <!--<li>-->
+                    <!--<div class="WeatherItem" style="padding-top:0px">-->
+                    <!--<div><img src="../views/images/weather/303.png " width="80"></div>-->
+                    <!--<div class="weatherItemDiv"> 小到中雨</div>-->
+                    <!--<div class="weatherItemDiv "> 2017-3-8</div>-->
+                    <!--<div class="weatherItemDiv"> 星期二</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<div class="WeatherItem" style="padding-top:0px;">-->
+                    <!--<div><img src="../views/images/weather/305.png " width="60"></div>-->
+                    <!--<div class="weatherItemDiv"> 小到中雨</div>-->
+                    <!--<div class="weatherItemDiv "> 2017-3-9</div>-->
+                    <!--<div class="weatherItemDiv"> 星期三</div>-->
 
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="WeatherItem" style="padding-top:0px">
-                            <div><img src="../views/images/weather/305.png " width="60"></div>
-                            <div class="weatherItemDiv"> 小到中雨</div>
-                            <div class="weatherItemDiv "> 2017-3-10</div>
-                            <div class="weatherItemDiv"> 星期四</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="WeatherItem" style="padding-top:0px">
-                            <div><img src="../views/images/weather/305.png " width="60"></div>
-                            <div class="weatherItemDiv"> 小到中雨</div>
-                            <div class="weatherItemDiv "> 2017-3-11</div>
-                            <div class="weatherItemDiv"> 星期五</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="WeatherItem" style="padding-top:0px">
-                            <div><img src="../views/images/weather/300.png " width="60"></div>
-                            <div class="weatherItemDiv"> 阵雨或雷阵雨</div>
-                            <div class="weatherItemDiv "> 2017-3-12</div>
-                            <div class="weatherItemDiv"> 星期六</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="WeatherItem" style="padding-top:0px">
-                            <div><img src="../views/images/weather/305.png " width="60"></div>
-                            <div class="weatherItemDiv"> 小到中雨</div>
-                            <div class="weatherItemDiv "> 2017-3-13</div>
-                            <div class="weatherItemDiv"> 星期天</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="WeatherItem" style="padding-top:0px">
-                            <div><img src="../views/images/weather/305.png " width="60"></div>
-                            <div class="weatherItemDiv"> 小到中雨</div>
-                            <div class="weatherItemDiv "> 2017-3-14</div>
-                            <div class="weatherItemDiv"> 星期一</div>
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<div class="WeatherItem" style="padding-top:0px">-->
+                    <!--<div><img src="../views/images/weather/305.png " width="60"></div>-->
+                    <!--<div class="weatherItemDiv"> 小到中雨</div>-->
+                    <!--<div class="weatherItemDiv "> 2017-3-10</div>-->
+                    <!--<div class="weatherItemDiv"> 星期四</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<div class="WeatherItem" style="padding-top:0px">-->
+                    <!--<div><img src="../views/images/weather/305.png " width="60"></div>-->
+                    <!--<div class="weatherItemDiv"> 小到中雨</div>-->
+                    <!--<div class="weatherItemDiv "> 2017-3-11</div>-->
+                    <!--<div class="weatherItemDiv"> 星期五</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<div class="WeatherItem" style="padding-top:0px">-->
+                    <!--<div><img src="../views/images/weather/300.png " width="60"></div>-->
+                    <!--<div class="weatherItemDiv"> 阵雨或雷阵雨</div>-->
+                    <!--<div class="weatherItemDiv "> 2017-3-12</div>-->
+                    <!--<div class="weatherItemDiv"> 星期六</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<div class="WeatherItem" style="padding-top:0px">-->
+                    <!--<div><img src="../views/images/weather/305.png " width="60"></div>-->
+                    <!--<div class="weatherItemDiv"> 小到中雨</div>-->
+                    <!--<div class="weatherItemDiv "> 2017-3-13</div>-->
+                    <!--<div class="weatherItemDiv"> 星期天</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<div class="WeatherItem" style="padding-top:0px">-->
+                    <!--<div><img src="../views/images/weather/305.png " width="60"></div>-->
+                    <!--<div class="weatherItemDiv"> 小到中雨</div>-->
+                    <!--<div class="weatherItemDiv "> 2017-3-14</div>-->
+                    <!--<div class="weatherItemDiv"> 星期一</div>-->
 
-                        </div>
-                    </li>
+                    <!--</div>-->
+                    <!--</li>-->
                 </ul>
+
             </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div id="weather_foot" class="weather_foot"></div>
+        <div class="weather_other">
+            <ul>
+                <li class="weather_other_active" type="temper"><span>24小时温度</span></li>
+                <li type="wind"><span>风力风向</span></li>
+                <li type="precipitation"><span>降水量</span></li>
+                <li type="pm2"><span>PM2.5</span></li>
+                <li type="cloudrate"><span>云量</span></li>
+
+            </ul>
         </div>
     </div>
 </div>

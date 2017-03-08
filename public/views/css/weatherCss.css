@@ -17,7 +17,7 @@
 
 .Weather .WeatherContentMain ul li {
     float: left;
-    margin-top: 35px;
+    /*margin-top: 20px;*/
     border-right: 1px solid rgba(218, 218, 218, 0.31);
     width: 87px;
     text-align: center;
@@ -27,7 +27,7 @@
 .Weather .WeatherContentMain ul li:first-child {
     width: 130px;
     margin: 0px;
-    font-size: 16px;
+    /*font-size: 16px;*/
 
 }
 
