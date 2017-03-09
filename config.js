@@ -2,6 +2,12 @@
  * Created by Administrator on 2017/3/2.
  */
 module.exports = {
+    MediaConfig: {
+        nodeid: '008000001001',
+        nodeaddr: 'tcp://192.168.12.206:9003',
+        hostip: '127.0.0.1',
+        webPort: 300
+    },
     mysql: {
         host     : 'bdm268988566.my3w.com',
         user     : 'bdm268988566',

@@ -5,37 +5,40 @@
     <title>文本编辑器</title>
     <link href="../views/css/bootstrap.css" rel="stylesheet"/>
     <link href="views/wangEditor/css/wangEditor.css" rel="stylesheet">
-    <script src="views/js/jquery.min.js"></script>
-    <script src="views/js/tether.js"></script>
-    <script src="views/js/bootstrap.js"></script>
-    <script src="views/wangEditor/js/wangEditor.js"></script>
+
 </head>
 <body>
 
 <div class="container">
-    <div class="row" style="margin-top: 10%;">
+    <div class="row" style="margin-top: 5%;">
         <div class="input-group input-group-lg">
             <span class="input-group-addon" id="sizing-addon1">标题</span>
-            <input type="text" class="form-control"
+            <input type="text" class="form-control" id="documentTitle"
                    placeholder="标题内容"
                    aria-describedby="sizing-addon1"
-                   style="font-size: 40px;font-weight: 100">
+                   style="font-size: 20px;font-weight: 100">
         </div>
 
     </div>
     <div class="row" style="margin-top: 20px;">
-        <textarea id="div1" style="min-height:600px; ">
+        <textarea id="documentContent" style="min-height:450px; ">
             <p>请输入内容...</p>
         </textarea>
+    </div>
+    <div class="row " style="margin-top: 10px">
+        <div class="col-md-4 offset-md-4">
+            <button class="btn btn-block btn-success" id="documentSave">保存</button>
+        </div>
     </div>
 </div>
 
 
-<!--这里引用jquery和wangEditor.js-->
-<script type="text/javascript">
-    var editor = new wangEditor('div1');
-    editor.create();
-</script>
 </body>
 
+<script src="views/js/jquery.min.js"></script>
+<script src="views/js/tether.js"></script>
+<script src="views/js/bootstrap.js"></script>
+<script src="views/wangEditor/js/wangEditor.js"></script>
+<script src="views/js/sweet-alert.js"></script>
+<script src="views/js/wangeditorView.js"></script>
 </html>
