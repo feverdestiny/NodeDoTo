@@ -3,7 +3,7 @@
  */
 $(function () {
     var documentId = '';
-
+    var loader = new SVGLoader(document.getElementById('loader'), {speedIn: 400, easingIn: mina.easeinout});
     init();
 
     function init() {
@@ -13,6 +13,8 @@ $(function () {
     }
 
     function GetDocumentInfo(documentId) {
+        $('.container').removeClass('show')
+        loader.show();
         $.ajax({
             type: 'POST',
             url: '/document/GetDocumentInfoById',
@@ -23,10 +25,14 @@ $(function () {
                 if (data.issuc) {
                     // swalAlter('获取成功', 'success');
                     DataToView(data.data[0]);
+
                 }
                 else {
                     swalAlter(data.error, 'warning');
                 }
+                $('.container').addClass('show')
+                loader.hide();
+                // $('#loader').hide();
             },
             error: function (jqXHR, textStatus, errorThrown) {
             }

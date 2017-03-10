@@ -5,23 +5,40 @@
     <title>Destiny</title>
     <link href="../views/css/bootstrap.css" rel="stylesheet"/>
     <link rel="stylesheet" href="views/css/sweet-alert.css"/>
+    <link rel="stylesheet" href="views/css/component.css"/>
     <script src="views/js/jquery.min.js"></script>
     <script src="views/js/tether.js"></script>
     <script src="views/js/bootstrap.js"></script>
     <script src="views/js/common.js"></script>
+    <script src="../views/js/Loder/snap.svg-min.js"></script>
+    <script src="../views/js/Loder/classie.js"></script>
+    <script src="../views/js/Loder/svgLoader.js"></script>
     <script src="views/js/sweet-alert.js"></script>
     <script src="views/js/documentInfoView.js"></script>
     <style>
-
+        .show {
+            display: block;
+        }
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container containerc">
     <div class="row " style="padding: 10px;margin-top: 30px;">
         <h4 id="DocumentTitle"></h4>
         <hr>
         <div id="DocumentContent" style="margin-top: 20px;"></div>
     </div>
+
 </div>
+<div id="loader" class="pageload-overlay" data-opening="M 0,0 c 0,0 63.5,-16.5 80,0 16.5,16.5 0,60 0,60 L 0,60 Z">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+
+        <path d="M 0,0 c 0,0 -16.5,43.5 0,60 16.5,16.5 80,0 80,0 L 0,60 Z"/>
+
+    </svg>
+
+</div><!-- /pageload-overlay -->
+
 </body>
 </html>

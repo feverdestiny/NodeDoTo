@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/3/10.
  */
 $(function () {
+
     init();
 
 });
@@ -10,6 +11,9 @@ function init() {
     getDocument();
 }
 function getDocument() {
+    var loader = new SVGLoader(document.getElementById('loader'), {speedIn: 400, easingIn: mina.easeinout});
+    $('.container').removeClass('show')
+    loader.show();
     $.ajax({
         type: 'POST',
         url: '/home/GetDocumentTitle',
@@ -24,6 +28,9 @@ function getDocument() {
             else {
                 swalAlter(data.error, 'warning');
             }
+            $('.container').addClass('show')
+            loader.hide();
+            $('#loader').removeClass('pageload-loading')
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
