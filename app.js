@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var echartsdemo=require('./routes/echartsdemo')
 var wangeditor = require('./routes/wangeditor')
 var weather = require('./routes/weather')
+var home = require('./routes/home');
+var document = require('./routes/documentInfo');
 var config = require('./config');
 var debug = require('debug')('nodejs-demo:server');
 var app = express();
@@ -31,7 +33,10 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/echarts',echartsdemo)
 app.use('/wangeditor', wangeditor);
+app.use('/home', home);
 app.use('/weather', weather)
+app.use('/document', document)
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

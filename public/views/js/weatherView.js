@@ -4,6 +4,7 @@
 
 var clickType = 'temper'; //默认温度
 $(function () {
+
     $('.weather_other li').on('click', function () {
         $(this).addClass('weather_other_active').siblings('.weather_other_active').removeClass('weather_other_active');
         clickType = this.type;

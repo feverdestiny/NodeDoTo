@@ -16,10 +16,10 @@ module.exports = Document;
 
 
 //保存数据
-Document.Save = function Save(data) {
-
+Document.Save = function Save(data, callback) {
+    var Dateuuid = uuid.v1();
     var insertDocument_Sql = "INSERT INTO tb_document(documentId,documentTitle,documentContent) VALUES('"
-        + uuid.v1() + "','"
+        + Dateuuid + "','"
         + data.documentTitle + "','"
         + data.documentContent + "')";
 
@@ -36,17 +36,32 @@ Document.Save = function Save(data) {
     });
 };
 
-//获取用户信息
-Document.GetDocumentInfo = function GetDocumentInfo(name, callback) {
-    console.log('name:' + name);
-    var getUserInfo_SQL = "SELECT * FROM tb_user WHERE name = '" + name + "'";
-    connection.query(getUserInfo_SQL, function (err, result) {
+//获取所有文档信息
+Document.GetDocumentInfo = function GetDocumentInfo(callback) {
+    var getDocumentTitle_SQL = "SELECT documentId,documentTitle FROM tb_document ";
+    connection.query(getDocumentTitle_SQL, function (err, result) {
         if (err) {
-            console.log("GetUserInfo Error: " + err.message);
+            console.log("GetDocumentInfo Error: " + err.message);
             return;
         }
         //connection.release();
-        console.log("invoked[GetUserInfo]");
+        console.log("invoked[GetDocumentInfo]");
+        result.issuc = true;
+        callback(err, result);
+    });
+}
+
+//通过documentId获取对应的文档信息
+Document.GetDocumentInfoById = function GetDocumentInfoById(documentId, callback) {
+    var getDocumentInfoById_SQL = "SELECT * FROM tb_document WHERE documentId = '" + documentId + "'";
+    connection.query(getDocumentInfoById_SQL, function (err, result) {
+        if (err) {
+            console.log("GetDocumentInfoById Error: " + err.message);
+            return;
+        }
+        //connection.release();
+        console.log("invoked[GetDocumentInfoById]");
+        result.issuc = true;
         callback(err, result);
     });
 }

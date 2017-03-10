@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var Document = require('../models/documents.js');
+Document = require('../models/documents.js');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -11,7 +11,8 @@ router.get('/', function (req, res, next) {
     res.render('wangeditor', {title: 'Express'});
 });
 
-router.post('/SaveDocument', function (req, res) {
+router.post('/savedoucment', function (req, res, next) {
+
     var name = req.body.name;
     var password = req.body.password
     var documentData = {
@@ -24,6 +25,22 @@ router.post('/SaveDocument', function (req, res) {
             res.send(res.locals);
         } else {
             console.log(result);
+            console.log(result);
+            res.locals.issuc = false;
+            res.locals.error = result.error;
+            res.send(res.locals);
+        }
+
+    });
+});
+
+router.post('/GetDocumentTitle', function (req, res, next) {
+    Document.GetDocumentInfo(function (err, result) {
+        if (result.issuc) {
+            res.locals.issuc = true;
+            res.locals.data = result;
+            res.send(res.locals);
+        } else {
             console.log(result);
             res.locals.issuc = false;
             res.locals.error = result.error;

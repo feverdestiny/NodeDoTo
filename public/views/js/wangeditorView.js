@@ -4,7 +4,53 @@
 
 $(function () {
     var editor;
-    init();
+    editor = new wangEditor('documentContent');
+    editor.create();
+    // init();
+    $('#documentSave').on('click', function () {
+        var documentContent = editor.$txt.html();
+        $.ajax({
+            type: 'POST',
+            url: '/wangeditor/savedoucment',
+            datatype: 'json',
+            data: {
+                documentTitle: $('#documentTitle').val(),
+                documentContent: documentContent
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.issuc) {
+                    swalAlter('保存成功', 'success');
+                }
+                else {
+                    swalAlter(data.error, 'warning');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    })
+
+    $('#getDocumentTitle').on('click', function () {
+        $.ajax({
+            type: 'POST',
+            url: '/wangeditor/GetDocumentTitle',
+            datatype: 'json',
+            data: {},
+            success: function (data) {
+                console.log(data);
+                if (data.issuc) {
+                    swalAlter('获取成功', 'success');
+                }
+                else {
+                    swalAlter(data.error, 'warning');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    });
+
 })
 
 function init() {
@@ -12,30 +58,7 @@ function init() {
 }
 
 function initEditor() {
-    editor = new wangEditor('documentContent');
-    editor.create();
+
 }
 
 
-$('#documentSave').on('click', function () {
-    $.ajax({
-        type: 'POST',
-        url: '/SaveDocument',
-        datatype: 'json',
-        data: {
-            'documentTitle': $('#documentTitle').val(),
-            'documentContent': editor.$txt.html()
-        },
-        success: function (data) {
-            console.log(data);
-            if (data.issuc) {
-                swalAlter('保存成功', 'success');
-            }
-            else {
-                swalAlter(data.error, 'warning');
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-        }
-    });
-})
